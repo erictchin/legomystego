@@ -102,14 +102,14 @@ def get_ppdb_line_lhs(split_line):
 Given a PPDB line properly split, return the source.
 """
 def get_ppdb_line_source(split_line):
-	s = re.sub(POS_MAPPING_REGEX, r'', split_line[1]).strip()
+	s = re.sub(POS_MAPPING_REGEX, r' ', split_line[1]).strip()
 	return escape_moses_characters(s)
 
 """
 Given a PPDB line properly split, return the target.
 """
 def get_ppdb_line_target(split_line):
-	s = re.sub(POS_MAPPING_REGEX, r'', split_line[2]).strip()
+	s = re.sub(POS_MAPPING_REGEX, r' ', split_line[2]).strip()
 	return escape_moses_characters(s)
 
 """
@@ -166,6 +166,7 @@ def normalize_phrase_probabilities(source_phrases):
 
 	return source_phrases
 
+# This will create a line SOURCE ||| TARGET ||| PROBABILITY FESTURE NAME ||| ALIGNMENT
 def create_phrase_table_line(paraphrase):
 	return paraphrase.source + PHRASE_TABLE_COLUMN_DELIMITER +\
 			paraphrase.target + PHRASE_TABLE_COLUMN_DELIMITER +\
